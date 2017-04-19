@@ -7,25 +7,25 @@
     android:orientation="vertical"
     tools:context="com.edu.thanhnam.noteweek3.MainActivity">
 
-    <RelativeLayout
-        android:layout_margin="10sp"
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_margin="10sp">
+
+    <ListView
+        android:id="@+id/lv_note"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"></ListView>
 
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/lv_note"></ListView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/txt_noty"
-            android:textSize="30sp"
-            android:text="@string/no_note"
-            android:gravity="center"/>
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/txt_noty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="@string/no_note"
+        android:textSize="30sp" />
+  </RelativeLayout>
 
 </LinearLayout>

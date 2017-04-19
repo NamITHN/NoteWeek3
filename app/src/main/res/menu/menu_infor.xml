@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:icon="@drawable/edit"
-        app:showAsAction="always"
         android:id="@+id/mnu_edit"
-        ></item>
+        android:icon="@drawable/edit"
+        app:showAsAction="always"></item>
     <item
-        android:icon="@drawable/delete"
-        app:showAsAction="always"
         android:id="@+id/mnu_delete"
-        ></item>
+        android:icon="@drawable/delete"
+        app:showAsAction="always"></item>
 
 </menu>

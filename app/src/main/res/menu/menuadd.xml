@@ -2,19 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:icon="@drawable/add"
-        app:showAsAction="always"
         android:id="@+id/mnu_add"
-       ></item>
+        android:icon="@drawable/add"
+        app:showAsAction="always"></item>
     <item
-        android:icon="@drawable/delete"
-        app:showAsAction="always"
         android:id="@+id/mnu_delete"
-        ></item>
+        android:icon="@drawable/delete"
+        app:showAsAction="always"></item>
     <item
-        android:icon="@drawable/undo"
-        app:showAsAction="always"
         android:id="@+id/mnu_undo"
-       ></item>
+        android:icon="@drawable/undo"
+        app:showAsAction="always"></item>
 
 </menu>

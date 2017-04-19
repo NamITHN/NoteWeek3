@@ -14,63 +14,63 @@ import java.util.ArrayList;
  */
 
 public class NoteDataSource {
-    private SQLiteDatabase sqLiteDatabase;
-    private NoteSQLiteHelper sqLiteHelper;
-    private String colum[] = {NoteSQLiteHelper.COLUNM_TITLE, NoteSQLiteHelper.COLUMN_TIME, NoteSQLiteHelper.COLUMN_CONTENT};
-    private Context context;
+  private SQLiteDatabase sqLiteDatabase;
+  private NoteSQLiteHelper sqLiteHelper;
+  private String colum[] = {NoteSQLiteHelper.COLUNM_TITLE, NoteSQLiteHelper.COLUMN_TIME, NoteSQLiteHelper.COLUMN_CONTENT};
+  private Context context;
 
-    public NoteDataSource(Context context) {
-        this.context = context;
-        sqLiteHelper = new NoteSQLiteHelper(context);
-    }
+  public NoteDataSource(Context context) {
+    this.context = context;
+    sqLiteHelper = new NoteSQLiteHelper(context);
+  }
 
-    public void open() {
-        sqLiteDatabase = sqLiteHelper.getWritableDatabase();
-    }
+  public void open() {
+    sqLiteDatabase = sqLiteHelper.getWritableDatabase();
+  }
 
-    public ArrayList<Note> getAllNote() {
-        ArrayList<Note> notes = new ArrayList<>();
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from " + NoteSQLiteHelper.TABLE_NAME, null);
-        cursor.moveToFirst();
-        while (!(cursor.isAfterLast())) {
-            Note note = cursorToNote(cursor);
-            notes.add(note);
-            cursor.moveToNext();
-        }
-        return notes;
+  public ArrayList<Note> getAllNote() {
+    ArrayList<Note> notes = new ArrayList<>();
+    Cursor cursor = sqLiteDatabase.rawQuery("select * from " + NoteSQLiteHelper.TABLE_NAME, null);
+    cursor.moveToFirst();
+    while (!(cursor.isAfterLast())) {
+      Note note = cursorToNote(cursor);
+      notes.add(note);
+      cursor.moveToNext();
     }
+    return notes;
+  }
 
-    private Note cursorToNote(Cursor cursor) {
-        Note note = new Note();
-        note.setId(cursor.getInt(0));
-        note.setTitle(cursor.getString(1));
-        note.setTime(cursor.getString(2));
-        note.setContent(cursor.getString(3));
-        return note;
-    }
+  private Note cursorToNote(Cursor cursor) {
+    Note note = new Note();
+    note.setId(cursor.getInt(0));
+    note.setTitle(cursor.getString(1));
+    note.setTime(cursor.getString(2));
+    note.setContent(cursor.getString(3));
+    return note;
+  }
 
-    public void deleteNote(Note note) {
-        sqLiteDatabase.delete(NoteSQLiteHelper.TABLE_NAME, NoteSQLiteHelper.COLUMN_ID + " = " + note.getId(), null);
-    }
+  public void deleteNote(Note note) {
+    sqLiteDatabase.delete(NoteSQLiteHelper.TABLE_NAME, NoteSQLiteHelper.COLUMN_ID + " = " + note.getId(), null);
+  }
 
-    public long insertNote(Note note) {
-        ContentValues values = new ContentValues();
-        values.put(NoteSQLiteHelper.COLUNM_TITLE, note.getTitle());
-        values.put(NoteSQLiteHelper.COLUMN_TIME, note.getTime());
-        values.put(NoteSQLiteHelper.COLUMN_CONTENT, note.getContent());
-        long ok = sqLiteDatabase.insert(NoteSQLiteHelper.TABLE_NAME, null, values);
-        return ok;
-    }
+  public long insertNote(Note note) {
+    ContentValues values = new ContentValues();
+    values.put(NoteSQLiteHelper.COLUNM_TITLE, note.getTitle());
+    values.put(NoteSQLiteHelper.COLUMN_TIME, note.getTime());
+    values.put(NoteSQLiteHelper.COLUMN_CONTENT, note.getContent());
+    long ok = sqLiteDatabase.insert(NoteSQLiteHelper.TABLE_NAME, null, values);
+    return ok;
+  }
 
-    public int updateNote(Note note) {
-        ContentValues values = new ContentValues();
-        values.put(NoteSQLiteHelper.COLUNM_TITLE, note.getTitle());
-        values.put(NoteSQLiteHelper.COLUMN_TIME, note.getTime());
-        values.put(NoteSQLiteHelper.COLUMN_CONTENT, note.getContent());
-        return sqLiteDatabase.update(NoteSQLiteHelper.TABLE_NAME, values, NoteSQLiteHelper.COLUMN_ID + " = " + note.getId(), null);
-    }
+  public int updateNote(Note note) {
+    ContentValues values = new ContentValues();
+    values.put(NoteSQLiteHelper.COLUNM_TITLE, note.getTitle());
+    values.put(NoteSQLiteHelper.COLUMN_TIME, note.getTime());
+    values.put(NoteSQLiteHelper.COLUMN_CONTENT, note.getContent());
+    return sqLiteDatabase.update(NoteSQLiteHelper.TABLE_NAME, values, NoteSQLiteHelper.COLUMN_ID + " = " + note.getId(), null);
+  }
 
-    public void close() {
-        sqLiteHelper.close();
-    }
+  public void close() {
+    sqLiteHelper.close();
+  }
 }
